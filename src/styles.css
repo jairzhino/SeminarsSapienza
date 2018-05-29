@@ -1,1 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+.example-container {
+  margin: auto;
+  width: 80%;
+  padding: 10px;
+}
+
+.color-Header {
+  background-color: #392742;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.center-content {
+  justify-content: center;
+}
+
+.img-center {
+  padding: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 25%;
+}
+
+.header-title {
+  color: white;
+  font-weight: bold;
+}
+
+.m-1 {
+  margin: 25px;
+}
