@@ -13,12 +13,22 @@ export class AppComponent {
   constructor(private httpservice: ServiceHttp) {
     this.bolswitch1 = false;
     this.strimg = '';
+    this.Init();
+  }
+  Init(){
+    this.httpservice.getState().subscribe(
+      b=>{
+        console.log(b.pin1);
+        this.bolswitch1=b.pin1;
+        this.ChangeState();
+      }
+    );
   }
   SwitchOn() {
     this.httpservice.getConnect().subscribe(
       b => {
         console.log(b);
-        this.bolswitch1 = true;
+        this.bolswitch1 = false;
         this.ChangeState();
       }
     );
@@ -27,7 +37,7 @@ export class AppComponent {
     this.httpservice.getDisconnect().subscribe(
       b => {
         console.log(b);
-        this.bolswitch1 = false;
+        this.bolswitch1 = true;
         this.ChangeState();
       }
     );

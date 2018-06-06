@@ -10,9 +10,12 @@ export class ServiceHttp {
     this.url = 'http://192.168.1.252';
   }
   getConnect(): Observable<any> {
-    return this.http.get(this.url + '/gpio/1');
+    return this.http.get(this.url + '/gpio/0');
   }
   getDisconnect(): Observable<any> {
-    return this.http.get(this.url + '/gpio/0');
+    return this.http.get(this.url + '/gpio/1');
+  }
+  getState():Observable<any>{
+    return this.http.get(this.url + '/gpior/1');
   }
 }
