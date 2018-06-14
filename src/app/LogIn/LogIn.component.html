@@ -1,0 +1,29 @@
+<mat-toolbar class="buttonDanger" *ngIf="bolOk">
+  <h2 class="text-center">{{warnMessage}}</h2>
+</mat-toolbar>
+<mat-card class="center-card">
+  <mat-card-header class="center-content" style="background: #3F51B5">
+    <mat-card-title>
+      <h2 class="text-center" style="color:white">
+        Log In
+      </h2>
+    </mat-card-title>
+  </mat-card-header>
+  <br>
+  <mat-card-content>
+    <mat-form-field class="example-input">
+      <input matInput placeholder="user name" type="text" [(ngModel)]="username">
+    </mat-form-field>
+    <mat-form-field class="example-input">
+      <input matInput placeholder="password" [type]="hide ? 'password' : 'text'" [(ngModel)]="password">
+      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+    </mat-form-field>
+  </mat-card-content>
+  <br>
+  <mat-card-actions>
+    <div class="example-button-row">
+      <button mat-raised-button color="primary" *ngIf="username!='' && password!=''" (click)="onClick()">Enter</button>
+    </div>
+
+  </mat-card-actions>
+</mat-card>
