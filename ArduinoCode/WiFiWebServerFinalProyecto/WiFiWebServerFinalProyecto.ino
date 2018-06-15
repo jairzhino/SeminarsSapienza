@@ -3,7 +3,7 @@
  *  The server will set a GPIO pin depending on the request
  *    http://server_ip/gpio/0 will set the GPIO2 low,
  *    http://server_ip/gpio/1 will set the GPIO2 high
- *  server_ip is the IP address of the ESP8266 module, will be 
+ *  server_ip is the IP address of the ESP8266 module, will be
  *  printed to Serial when the module is connected.
  */
 
@@ -11,10 +11,10 @@
 /*
  * This is the credentials for connect to the Router
 */
-//const char* ssid = "jairgerson";
-//const char* password = "gerson86jair";
-const char* ssid = "Vodafone-33958722";
-const char* password = "Eleazar*Gerson*Patricia";
+const char* ssid = "jairgerson";
+const char* password = "gerson86jair";
+//const char* ssid = "Vodafone-33958722";
+//const char* password = "Eleazar*Gerson*Patricia";
 
 /*
  * Here define the IP, Gateway and Subnet
@@ -23,7 +23,7 @@ const char* password = "Eleazar*Gerson*Patricia";
 //IPAddress gateway(192,168,43,1);
 IPAddress ip(192,168,1,252);
 IPAddress gateway(192,168,1,1);
-IPAddress subnet(255,255,255,0); 
+IPAddress subnet(255,255,255,0);
 
 /*
  * Create an instance of the server
@@ -53,11 +53,11 @@ int salida=0;
     delay(10);
     PrepareVariables();
     ConnectNetwork();
-    
+
     // Start the server
     server.begin();
     Serial.println("Server started");
-  
+
     // Print the IP address
     Serial.println(WiFi.localIP());
   }
@@ -78,7 +78,7 @@ int salida=0;
     Serial.println();
     Serial.print("Connecting to ");
     Serial.println(ssid);
-    
+
     WiFi.begin(ssid, password);
     WiFi.config(ip,gateway,subnet);
     while (WiFi.status() != WL_CONNECTED) {
@@ -87,31 +87,31 @@ int salida=0;
     }
     Serial.println("");
     Serial.println("WiFi connected");
-    
+
   }
- 
-  
+
+
 void loop() {
-  
+
   // Check if a client has connected
   WiFiClient client = server.available();
   if (!client) {
     return;
   }
-  
+
   // Wait until the client sends some data
   Serial.println("new client");
   while(!client.available()){
     delay(1);
   }
-  
+
   // Read the first line of the request
   String req = client.readStringUntil('\r');
   Serial.println(req);
   client.flush();
-  
+
   // Match the request
-  
+
   if (req.indexOf("/gpio/1") != -1)
   {
       salida = 1;
@@ -132,7 +132,7 @@ void loop() {
     return;
   }
 
-  // Set GPIO2 according to the request  
+  // Set GPIO2 according to the request
   digitalWrite(led, salida);
   client.flush();
 
@@ -141,7 +141,7 @@ void loop() {
   if(switchPin==1)
   {
     s = "HTTP/1.1 200 OK\r\nContent-Type: application/json;charset=utf-8\r\nHost:192.168.1.9\r\nAccess-Control-Allow-Origin:*\r\nAccess-Control-Allow-Headers:Origin, X-Requested-With, Content-Type, Accept\r\n\r\n";
-    s += (salida)?"{\"pin1\":1}":"{\"pin1\":0}";  
+    s += (salida)?"{\"pin1\":1}":"{\"pin1\":0}";
     }
   else
   if(switchPin==2)
@@ -154,7 +154,7 @@ void loop() {
   delay(1);
   Serial.println("Client disonnected");
 
-  // The client will actually be disconnected 
+  // The client will actually be disconnected
   // when the function returns and 'client' object is detroyed
 }
 
