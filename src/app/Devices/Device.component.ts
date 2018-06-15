@@ -8,51 +8,55 @@ import { ServiceLogin } from '../Service.Login';
   templateUrl: './Device.component.html',
   styleUrls: ['./Device.component.css']
 })
-export class DeviceComponent{
+export class DeviceComponent {
   title = 'app';
   bolswitch1: boolean;
   strimg: string;
-  bolconnect:boolean;
-  imgArrays:string[];
-  strimgDevice:string;
+  bolconnect: boolean;
+  imgArrays: string[];
+  strimgDevice: string;
   constructor(private httpservice: ServiceHttp,
-    private _router:Router,
-    private _serviceLogin:ServiceLogin){
-    if(!(this._serviceLogin.getUsername()!=null && this._serviceLogin.getUsername()!=''))
+    private _router: Router,
+    private _serviceLogin: ServiceLogin) {
+    if (!(this._serviceLogin.getUsername() != null && this._serviceLogin.getUsername() != ''))
       this._router.navigate(["/LogIn"]);
     this.bolswitch1 = false;
     this.bolconnect = false;
     this.strimg = 'assets/waiting.gif';
 
-    this.imgArrays = ['assets/aire.png','assets/heladera.png','assets/lavadora.png'];
-    if(localStorage.getItem('imagen')==null)
-      localStorage.setItem('imagen','assets/aire.png');
-
+    this.imgArrays = ['assets/aire.png', 'assets/heladera.png',
+    'assets/lavadora.png','assets/ventilador.jpg', 'assets/lampara.png'];
+    if (localStorage.getItem('imagen') == null)
+      localStorage.setItem('imagen', 'assets/aire.png');
+    this.strimgDevice = localStorage.getItem('imagen');
     this.Init();
   }
-  Init(){
+  Init() {
     try {
       this.httpservice.getState().subscribe(
-        b=>{
+        b => {
           console.log(b.pin1);
-          this.bolswitch1=b.pin1;
+          this.bolswitch1 = b.pin1;
           this.ChangeState();
-          this.bolconnect=true;
-          this.strimgDevice =localStorage.getItem('imagen');
+          this.bolconnect = true;
+
         },
-        error=>{
+        error => {
           console.log('error service ' + JSON.stringify(error));
           this.strimg = "assets/NoConnection.png";
-          this.strimgDevice =localStorage.getItem('imagen');
         }
       );
     } catch (error) {
-      console.log('try catch '+error);
+      console.log('try catch ' + error);
     }
 
   }
-  LogOut(){
+  LogOut() {
 
+  }
+  Select(image:string){
+    localStorage.setItem('imagen', image);
+    this.strimgDevice = localStorage.getItem('imagen');
   }
   SwitchOn() {
     this.httpservice.getConnect().subscribe(

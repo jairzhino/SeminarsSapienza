@@ -2,26 +2,41 @@
   <mat-card-header class="center-content color-Header">
     <h2 class="text-center header-title">Smart Plug</h2>
   </mat-card-header>
-  <mat-grid-list cols="2" rowHeight="200px">
+  <mat-grid-list cols="2" rowHeight="350px">
     <mat-grid-tile>
       <div class="img-center">
         <img mat-card-image src="{{strimg}}" alt="Photo of plug">
+        <h4 class="text-center">ON/OFF</h4>
       </div>
     </mat-grid-tile>
     <mat-grid-tile>
       <div class="img-center">
         <img mat-card-image src="{{strimgDevice}}" alt="Photo of plug">
+        <h4 class="text-center">Artefact</h4>
       </div>
     </mat-grid-tile>
   </mat-grid-list>
-
-
   <mat-card-content>
     <h4 class="text-center">Device Number 1</h4>
   </mat-card-content>
-
   <mat-card-actions class="text-center color-Header" *ngIf="bolconnect">
     <button mat-raised-button (click)="SwitchOff()" style="background-color: #229954;color:white">Connect</button>
     <button mat-raised-button color="warn" (click)="SwitchOn()">Disconnect</button>
   </mat-card-actions>
+</mat-card>
+<mat-card class="example-container mt-1">
+  <mat-card-header class="center-content color-Header">
+    <h2 class="text-center header-title">Select One</h2>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-grid-list cols="6" rowHeight="200px">
+      <mat-grid-tile *ngFor="let image of imgArrays;let i = index">
+        <div class="img-center">
+          <img mat-card-image src="{{image}}" alt="Photo of plug">
+          <button mat-raised-button color="primary" (click)="Select(image)">Select</button>
+        </div>
+
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card-content>
 </mat-card>
