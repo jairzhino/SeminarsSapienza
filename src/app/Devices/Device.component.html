@@ -6,7 +6,8 @@
     <mat-grid-tile>
       <div class="img-center">
         <img mat-card-image src="{{strimg}}" alt="Photo of plug">
-        <h4 class="text-center">ON/OFF</h4>
+        <h4 class="text-center" *ngIf="bolswitch1">ON</h4>
+        <h4 class="text-center" *ngIf="!bolswitch1">OFF</h4>
       </div>
     </mat-grid-tile>
     <mat-grid-tile>

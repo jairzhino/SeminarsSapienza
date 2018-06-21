@@ -18,7 +18,7 @@ export class AppComponentLogin {
     console.log("Log In component");
     if ((this._serviceLogin.getUsername() != null && this._serviceLogin.getUsername() != ''))
       this._router.navigate(["/Device"]);
-    this.hide = false;
+    this.hide = true;
     this.bolOk=false;
     this.username = "";
     this.password = "";

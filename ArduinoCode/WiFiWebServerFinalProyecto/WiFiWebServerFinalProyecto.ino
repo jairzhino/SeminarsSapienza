@@ -19,10 +19,10 @@ const char* password = "gerson86jair";
 /*
  * Here define the IP, Gateway and Subnet
 */
-//IPAddress ip(192,168,43,252);
-//IPAddress gateway(192,168,43,1);
-IPAddress ip(192,168,1,252);
-IPAddress gateway(192,168,1,1);
+IPAddress ip(192,168,43,252);
+IPAddress gateway(192,168,43,1);
+//IPAddress ip(192,168,1,252);
+//IPAddress gateway(192,168,1,1);
 IPAddress subnet(255,255,255,0);
 
 /*

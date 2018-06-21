@@ -36,7 +36,7 @@ export class DeviceComponent {
       this.httpservice.getState().subscribe(
         b => {
           console.log(b.pin1);
-          this.bolswitch1 = b.pin1;
+          this.bolswitch1 = !b.pin1;
           this.ChangeState();
           this.bolconnect = true;
 
